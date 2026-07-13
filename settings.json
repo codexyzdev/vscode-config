@@ -13,15 +13,11 @@
   "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
 
-  "github.copilot.nextEditSuggestions.enabled": true,
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
 
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
-  },
   "vim.leader": "<space>",
   "vim.easymotion": true,
   "vim.incsearch": true,
