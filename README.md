@@ -2,6 +2,8 @@
 
 Mi configuración personal de VS Code — portable, sin login, lista en un solo comando.
 
+> [codexyz.dev](https://www.codexyz.dev/)
+
 ## Requisitos
 
 - [VS Code](https://code.visualstudio.com/) instalado y con `code` en el PATH
@@ -9,7 +11,7 @@ Mi configuración personal de VS Code — portable, sin login, lista en un solo 
 ## Uso
 
 ```bash
-git clone https://github.com/tu-usuario/vscode-config.git
+git clone https://github.com/codexyzdev/vscode-config.git
 cd vscode-config
 ```
 
