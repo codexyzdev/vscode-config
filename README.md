@@ -38,7 +38,11 @@ chmod +x setup.sh
 | `setup.ps1` | Script de instalación para Windows |
 | `setup.sh` | Script de instalación para Linux/Mac |
 
-## Atajos de Vim incluidos
+## Atajos personalizados
+
+> Leader key: `<space>`
+
+### Modo Normal
 
 | Tecla | Acción |
 |---|---|
@@ -46,5 +50,36 @@ chmod +x setup.sh
 | `<space> f` | Formatear documento |
 | `g d` | Ir a definición |
 | `g R` | Renombrar símbolo |
-| `K` | Mostrar documentación |
-| `Ctrl+h/j/k/l` | Navegar entre paneles |
+| `K` | Mostrar documentación (hover) |
+| `<C-n>` | Quitar resaltado de búsqueda |
+| `<C-h>` | Ir al panel izquierdo |
+| `<C-l>` | Ir al panel derecho |
+| `<C-k>` | Ir al panel superior |
+| `<C-j>` | Ir al panel inferior |
+| `<leader><leader> s <char>` | EasyMotion (saltar a `<char>`) |
+
+### Modo Insert
+
+| Tecla | Acción |
+|---|---|
+| `j j` | Salir a modo Normal (`<Esc>`) |
+
+### Teclas liberadas (usa las de VS Code)
+
+| Tecla | Va a |
+|---|---|
+| `<C-a>` | Seleccionar todo |
+| `<C-c>` | Copiar |
+| `<C-v>` | Pegar |
+| `<C-f>` | Buscar en archivo |
+| `<C-z>` | Deshacer |
+
+### Comportamiento Vim activo
+
+| Setting | Qué hace |
+|---|---|
+| `easymotion` | Movimiento rápido con `<leader><leader>` |
+| `incsearch` | Búsqueda incremental mientras escribís |
+| `hlsearch` | Resalta todos los resultados de búsqueda |
+| `useSystemClipboard` | Yank/put comparten portapapeles con el SO |
+| `useCtrlKeys` | Habilita atajos como `<C-r>`, `<C-d>`, `<C-u>` |
