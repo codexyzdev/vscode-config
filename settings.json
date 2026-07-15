@@ -17,7 +17,6 @@
   "files.autoSave": "afterDelay",
 
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
