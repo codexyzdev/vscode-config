@@ -10,18 +10,34 @@ Mi configuración personal de VS Code — portable, sin login, lista en un solo 
 
 ## Uso
 
+### Opción 1: npx (sin clonar)
+
+Desde cualquier directorio:
+
+```bash
+npx github:codexyzdev/vscode-config
+```
+
+Si querés volver atrás después:
+
+```bash
+npx github:codexyzdev/vscode-config restore
+```
+
+### Opción 2: clonar el repo
+
 ```bash
 git clone https://github.com/codexyzdev/vscode-config.git
 cd vscode-config
 ```
 
-### Windows
+#### Windows
 
 ```powershell
 .\setup.ps1
 ```
 
-### Linux / Mac
+#### Linux / Mac
 
 ```bash
 chmod +x setup.sh
@@ -53,6 +69,8 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | `settings.json` | Config del editor, Vim, formateo, terminal, Git |
 | `extensions.txt` | Lista de extensiones a instalar |
 | `fire code font/` | Fuente Fira Code (6 variantes) |
+| `package.json` | Config npm + entry point para `npx` |
+| `bin/cli.js` | Wrapper multiplataforma que detecta el SO y delega al script correspondiente |
 | `setup.ps1` | Script de instalación para Windows |
 | `setup.sh` | Script de instalación para Linux/Mac |
 | `restore.ps1` | Script para restaurar el backup (Windows) |
