@@ -171,7 +171,45 @@ Ejemplo: `ci"` cambia el contenido dentro de comillas, `di(` borra lo de adentro
 | Tecla | Acción |
 |---|---|
 | `s v` | Split vertical |
-| `<space> e` | Toggle explorer |
+| `<space> e` | Toggle explorer (mostrar/ocultar) |
+| `<space> E` | Focus explorer (abre y mueve el foco al file tree) |
+
+Dentro del file tree, las teclas de Vim siguen funcionando: `j`/`k` para moverte, `o` o `Enter` para abrir, `Escape` para volver al editor.
+
+---
+
+## Tabs y buffers
+
+VS Code no tiene "tabs" al estilo Vim; tiene **editores** dentro de **grupos**. Estos atajos te dan la experiencia Vim.
+
+### Navegación
+
+| Tecla | Acción |
+|---|---|
+| `g t` | Siguiente editor en el grupo activo (estilo `:tabnext`) |
+| `g T` | Editor anterior en el grupo activo (estilo `:tabprev`) |
+| `] b` | Siguiente editor en historial MRU (entre todos los grupos) |
+| `[ b` | Editor anterior en historial MRU |
+| `<space> 1` … `<space> 9` | Ir al editor N del grupo activo (estilo `1gt`) |
+
+### Mover editor entre grupos
+
+| Tecla | Acción |
+|---|---|
+| `<C-w> H` | Mover editor al grupo de la izquierda |
+| `<C-w> L` | Mover al grupo de la derecha |
+| `<C-w> K` | Mover al grupo de arriba |
+| `<C-w> J` | Mover al grupo de abajo |
+
+> Minúscula = foco (`<C-w> h` ya enfoca), mayúscula = mover.
+
+### Cerrar
+
+| Tecla | Acción |
+|---|---|
+| `<space> b d` | Cerrar editor actual |
+| `<space> o` | Cerrar todos los demás editores |
+| `<space> q` | Cerrar todos los editores |
 
 ---
 
@@ -272,9 +310,71 @@ g r                     →  lista de referencias
 
 ---
 
+## VS Code desde cero
+
+Si nunca usaste VS Code (o venís de otro editor puro), esto es lo mínimo para no perderse.
+
+### Conceptos básicos
+
+- **Workbench**: la ventana completa de VS Code. Incluye todo lo que ves.
+- **Editor**: el área donde escribís código. Es un archivo abierto.
+- **Grupo de editores** (editor group): un panel del editor. Podés tener varios a la vez (splits).
+- **Sidebar**: la barra lateral (izquierda o derecha según tu config). Contiene el Explorer, Search, Source Control, Extensions, etc.
+- **Panel**: la barra inferior. Contiene Terminal, Problems, Output, Debug Console.
+- **Command Palette**: el centro de control. Toda acción de VS Code vive acá.
+
+### Atajos esenciales sin mouse
+
+| Atajo | Acción |
+|---|---|
+| `Ctrl+Shift+P` | Abrir Command Palette (lo más importante) |
+| `Ctrl+P` | Quick Open: buscar y abrir un archivo por nombre |
+| `Ctrl+Shift+F` | Buscar texto en todos los archivos (grep) |
+| `Ctrl+Shift+E` | Mostrar / focus Explorer |
+| `Ctrl+` ` (backtick) | Toggle terminal integrada |
+| `Ctrl+B` | Toggle sidebar |
+| `Ctrl+J` | Toggle panel inferior |
+| `Ctrl+W` | Cerrar editor actual (cuidado: pisa `<C-w>` de Vim — usá `<space> b d`) |
+
+> `Ctrl+W` lo libera Vim, por eso tenés `<space> b d` para cerrar. Y `Ctrl+P` también lo intercepta Vim: usá `<space> f f` para Quick Open.
+
+### Settings: UI vs JSON
+
+- **Settings UI** (`Ctrl+,`): buscador visual, ideal para descubrir opciones.
+- **settings.json** (este archivo): control total, versionable, portable. Es lo que se sincroniza con el repo.
+
+Para abrir settings.json directo: `Ctrl+Shift+P` → "Open User Settings (JSON)".
+
+### Diff y source control
+
+- `Ctrl+Shift+G` abre el panel de Source Control.
+- `Ctrl+Shift+P` → "Git: Open Changes" para ver el diff del archivo actual.
+
+### Sincronización
+
+Las settings, extensions y keybindings se pueden sincronizar entre máquinas con una cuenta de Microsoft/GitHub. **Esta config está pensada para que NO necesites login** — la clonan, corren `setup.sh`/`setup.ps1` y listo.
+
+### Atajos propios de esta config (resumen rápido)
+
+| Tecla | Acción |
+|---|---|
+| `<space> f f` | Quick Open (buscar archivo) |
+| `<space> f g` | Grep en archivos |
+| `<space> e` | Toggle explorer |
+| `<space> E` | Focus explorer |
+| `<space> t t` | Toggle terminal |
+| `<space> w` | Guardar |
+| `g t` / `g T` | Tab siguiente / anterior |
+| `] b` / `[ b` | Buffer siguiente / anterior (MRU) |
+| `<C-w> h/j/k/l` | Foco entre grupos |
+| `<C-w> H/J/K/L` | Mover editor entre grupos |
+
+---
+
 ## Recursos
 
 - [VSCodeVim](https://github.com/VSCodeVim/Vim) — repo oficial
 - [`:help` desde Vim](https://vimhelp.org/) — referencia completa
 - [Vim Adventures](https://vim-adventures.com/) — aprender jugando
 - [Vim Cheat Sheet](https://vim.rtorr.com/) — cheatsheet imprimible
+- [VS Code Docs](https://code.visualstudio.com/docs) — manual oficial
