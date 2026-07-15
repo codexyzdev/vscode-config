@@ -10,28 +10,35 @@ const isWindows = os.platform() === 'win32';
 const HELP = `Uso: vscode-config [comando] [opciones]
 
 Comandos:
-  (sin comando)   Instalar la config (hace backup antes)
-  restore         Restaurar el backup mas reciente
+  (sin comando)   Instalar la config (hace backup antes, pide confirmacion)
+  restore         Restaurar el backup mas reciente (pide confirmacion)
   help            Mostrar esta ayuda
 
 Ejemplos:
   vscode-config
+  vscode-config -y
   vscode-config restore
   vscode-config restore 2026-07-14_203000
   vscode-config restore -y
 
 Opciones (despues del comando):
-  -y, --yes, -Force         No pedir confirmacion al restaurar
+  -y, --yes, -Force         No pedir confirmacion
   -Timestamp <id>           Backup especifico (PowerShell)
   <timestamp>               Backup especifico (bash)
 `;
 
-const action = process.argv[2];
-const restArgs = process.argv.slice(3);
+let action = process.argv[2];
+let restArgs = process.argv.slice(3);
 
 if (action === 'help' || action === '--help' || action === '-h' || action === '?') {
     console.log(HELP);
     process.exit(0);
+}
+
+const skipConfirmFlags = ['-y', '--yes', '-Force'];
+if (action && skipConfirmFlags.includes(action)) {
+    restArgs = [action, ...restArgs];
+    action = undefined;
 }
 
 let scriptFile;

@@ -18,6 +18,12 @@ Desde cualquier directorio:
 npx @codexyzdev/vscode-config
 ```
 
+Antes de tocar nada, el script muestra qué va a hacer y pide confirmación. Para saltear el prompt:
+
+```bash
+npx @codexyzdev/vscode-config -y
+```
+
 Si querés volver atrás después:
 
 ```bash

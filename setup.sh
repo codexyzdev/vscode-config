@@ -5,9 +5,33 @@ CODE_USER="$HOME/.config/Code/User"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BACKUP_ROOT="$SCRIPT_DIR/.backups"
 
+SKIP_CONFIRM=0
+for arg in "$@"; do
+    case "$arg" in
+        -y|--yes) SKIP_CONFIRM=1 ;;
+    esac
+done
+
 echo -e "\033[36m=== VS Code Config Setup ===\033[0m"
 echo ""
 
+EXT_COUNT=$(grep -cv -E '^\s*(#|$)' "$SCRIPT_DIR/extensions.txt" 2>/dev/null || echo "0")
+echo -e "\033[33mEsto va a:\033[0m"
+echo -e "\033[33m  - Respaldar tu config actual en .backups/<timestamp>/ (si existe)\033[0m"
+echo -e "\033[33m  - Instalar la fuente Fira Code\033[0m"
+echo -e "\033[33m  - Copiar settings.json a $CODE_USER\033[0m"
+echo -e "\033[33m  - Instalar $EXT_COUNT extensiones de extensions.txt\033[0m"
+echo ""
+
+if [[ $SKIP_CONFIRM -eq 0 ]]; then
+    read -p "¿Continuar? [s/N] " ans
+    case "$ans" in
+        s|S|y|Y) ;;
+        *) echo -e "\033[33mCancelado.\033[0m"; exit 0 ;;
+    esac
+fi
+
+echo ""
 echo -e "\033[33m[1/4] Respaldando config previa...\033[0m"
 TIMESTAMP="$(date +%Y-%m-%d_%H%M%S)"
 BACKUP_DIR="$BACKUP_ROOT/$TIMESTAMP"

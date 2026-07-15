@@ -1,3 +1,8 @@
+param(
+    [Alias('y', 'yes')]
+    [switch]$Force
+)
+
 $ErrorActionPreference = "Stop"
 $codeUser = "$env:APPDATA\Code\User"
 $scriptDir = $PSScriptRoot
@@ -6,9 +11,26 @@ if (-not (Test-Path $codeUser)) {
     New-Item -ItemType Directory -Path $codeUser -Force | Out-Null
 }
 
+$extCount = @(Get-Content ".\extensions.txt" | Where-Object { $_ -and -not $_.StartsWith("#") }).Count
+
 Write-Host "=== VS Code Config Setup ===" -ForegroundColor Cyan
 Write-Host ""
+Write-Host "Esto va a:" -ForegroundColor Yellow
+Write-Host "  - Respaldar tu config actual en .backups/<timestamp>/ (si existe)" -ForegroundColor Yellow
+Write-Host "  - Instalar la fuente Fira Code" -ForegroundColor Yellow
+Write-Host "  - Copiar settings.json a $codeUser" -ForegroundColor Yellow
+Write-Host "  - Instalar $extCount extensiones de extensions.txt" -ForegroundColor Yellow
+Write-Host ""
 
+if (-not $Force) {
+    $ans = Read-Host "¿Continuar? [s/N]"
+    if ($ans -notin @("s", "S", "y", "Y")) {
+        Write-Host "Cancelado." -ForegroundColor Yellow
+        exit 0
+    }
+}
+
+Write-Host ""
 Write-Host "[1/4] Respaldando config previa..." -ForegroundColor Yellow
 $backupRoot = Join-Path $scriptDir ".backups"
 $timestamp = Get-Date -Format "yyyy-MM-dd_HHmmss"
