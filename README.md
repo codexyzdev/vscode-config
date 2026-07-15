@@ -15,13 +15,13 @@ Mi configuración personal de VS Code — portable, sin login, lista en un solo 
 Desde cualquier directorio:
 
 ```bash
-npx github:codexyzdev/vscode-config
+npx @codexyzdev/vscode-config
 ```
 
 Si querés volver atrás después:
 
 ```bash
-npx github:codexyzdev/vscode-config restore
+npx @codexyzdev/vscode-config restore
 ```
 
 ### Opción 2: clonar el repo
@@ -48,11 +48,13 @@ chmod +x setup.sh
 
 Si querés volver a la config que tenías antes de correr el setup:
 
-- Windows: `.\restore.ps1`
-- Linux / Mac: `./restore.sh`
+- Vía npx: `npx @codexyzdev/vscode-config restore`
+- Windows (repo clonado): `.\restore.ps1`
+- Linux / Mac (repo clonado): `./restore.sh`
 
 Por defecto toma el backup más reciente de `.backups/`. Para uno específico:
 
+- npx: `npx @codexyzdev/vscode-config restore 2026-07-14_203000`
 - Windows: `.\restore.ps1 -Timestamp 2026-07-14_203000`
 - Linux / Mac: `./restore.sh 2026-07-14_203000`
 
