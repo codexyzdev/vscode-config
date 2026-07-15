@@ -49,7 +49,7 @@ chmod +x setup.sh
 | Tecla | Acción |
 |---|---|
 | `<space> w` | Guardar archivo |
-| `<space> w w` | Alternar word wrap |
+| `<space> t w` | Alternar word wrap |
 | `<space> f` | Formatear documento |
 | `<space> f f` | Quick Open (buscar archivo) |
 | `<space> f g` | Buscar en archivos (grep) |
@@ -64,7 +64,7 @@ chmod +x setup.sh
 | `g d` | Ir a definición |
 | `g D` | Ir a declaración |
 | `g i` | Ir a implementación |
-| `g L` | Buscar referencias |
+| `g r` | Buscar referencias |
 | `g y` | Ir a definición de tipo |
 | `<space> r n` | Renombrar símbolo |
 | `K` | Mostrar documentación (hover) |
@@ -137,3 +137,4 @@ chmod +x setup.sh
 | `useSystemClipboard` | Yank/put comparten portapapeles con el SO |
 | `useCtrlKeys` | Habilita atajos como `<C-r>`, `<C-d>`, `<C-u>` |
 | `commentary` | Habilita `gcc` y `gc` para comentar |
+| `extensions.experimental.affinity` | Acelera VSCodeVim asignándole un core dedicado |

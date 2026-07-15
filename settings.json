@@ -36,14 +36,14 @@
   "vim.normalModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-n>"],
-      "commands": ["zx"]
+      "commands": [":nohl"]
     },
     {
       "before": ["<leader>", "w"],
       "commands": ["workbench.action.files.save"]
     },
     {
-      "before": ["<leader>", "w", "w"],
+      "before": ["<leader>", "t", "w"],
       "commands": ["workbench.action.toggleWordWrap"]
     },
     {
@@ -103,7 +103,7 @@
       "commands": ["editor.action.goToImplementation"]
     },
     {
-      "before": ["g", "L"],
+      "before": ["g", "r"],
       "commands": ["editor.action.referenceSearch.trigger"]
     },
     {
@@ -178,6 +178,10 @@
     "<C-c>": false,
     "<C-f>": false,
     "<C-z>": false
+  },
+
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
   },
   "workbench.iconTheme": "symbols",
   "workbench.sideBar.location": "right",
