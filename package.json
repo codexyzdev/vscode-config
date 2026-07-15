@@ -1,6 +1,6 @@
 {
   "name": "@codexyzdev/vscode-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "VS Code config portable: settings, extensiones y atajos Vim, con backup automático y restore.",
   "bin": "./bin/cli.js",
   "files": [
