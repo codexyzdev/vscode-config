@@ -44,18 +44,71 @@ chmod +x setup.sh
 
 ### Modo Normal
 
+#### Archivos y formato
+
 | Tecla | Acción |
 |---|---|
 | `<space> w` | Guardar archivo |
+| `<space> w w` | Alternar word wrap |
 | `<space> f` | Formatear documento |
+| `<space> f f` | Quick Open (buscar archivo) |
+| `<space> f g` | Buscar en archivos (grep) |
+| `<space> f b` | Listar buffers abiertos |
+| `<space> f r` | Archivos recientes |
+| `<space> f s` | Ir a símbolo del workspace |
+
+#### Navegación de código (LSP)
+
+| Tecla | Acción |
+|---|---|
 | `g d` | Ir a definición |
-| `g R` | Renombrar símbolo |
+| `g D` | Ir a declaración |
+| `g i` | Ir a implementación |
+| `g L` | Buscar referencias |
+| `g y` | Ir a definición de tipo |
+| `<space> r n` | Renombrar símbolo |
 | `K` | Mostrar documentación (hover) |
-| `<C-n>` | Quitar resaltado de búsqueda |
+| `<space> c a` | Quick fix / code actions |
+
+#### Diagnósticos
+
+| Tecla | Acción |
+|---|---|
+| `] d` | Siguiente error/warning |
+| `[ d` | Error/warning anterior |
+
+#### Edición de líneas
+
+| Tecla | Acción |
+|---|---|
+| `<space> d` | Duplicar línea hacia abajo |
+| `<space> u` | Duplicar línea hacia arriba |
+| `<space> x` | Borrar línea |
+| `<space> /` | Comentar/descomentar línea |
+| `g c c` | Comentar línea (commentary) |
+| `g c` (visual) | Comentar selección (commentary) |
+
+#### Paneles y foco
+
+| Tecla | Acción |
+|---|---|
 | `<C-h>` | Ir al panel izquierdo |
 | `<C-l>` | Ir al panel derecho |
 | `<C-k>` | Ir al panel superior |
 | `<C-j>` | Ir al panel inferior |
+| `s v` | Split vertical |
+| `<space> e` | Toggle explorer |
+| `<space> t t` | Toggle terminal |
+| `<space> t f` | Focus terminal |
+| `<space> t n` | Nueva terminal |
+| `<space> b d` | Cerrar buffer actual |
+| `<space> q` | Cerrar todos los editores |
+
+#### Búsqueda
+
+| Tecla | Acción |
+|---|---|
+| `<C-n>` | Quitar resaltado de búsqueda |
 | `<leader><leader> s <char>` | EasyMotion (saltar a `<char>`) |
 
 ### Modo Insert
@@ -83,3 +136,4 @@ chmod +x setup.sh
 | `hlsearch` | Resalta todos los resultados de búsqueda |
 | `useSystemClipboard` | Yank/put comparten portapapeles con el SO |
 | `useCtrlKeys` | Habilita atajos como `<C-r>`, `<C-d>`, `<C-u>` |
+| `commentary` | Habilita `gcc` y `gc` para comentar |
