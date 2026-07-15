@@ -262,5 +262,7 @@
   },
   "workbench.colorTheme": "One Dark Pro",
   "editor.inlineSuggest.edits.showCollapsed": true,
-  "github.copilot.enable": false
+  "github.copilot.enable": {
+    "*": false
+  }
 }
