@@ -102,6 +102,8 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 
 ## Atajos personalizados
 
+Referencia completa en [`VIM.md`](./VIM.md).
+
 > Leader key: `<space>`
 
 ### Modo Normal
