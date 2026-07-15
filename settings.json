@@ -1,4 +1,7 @@
 {
+  "editor.minimap.enabled": false,
+  "editor.linkedEditing": true,
+  "editor.semanticHighlighting.enabled": true,
   "editor.experimental.asyncTokenization": true,
   "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": "on",
@@ -8,12 +11,13 @@
   "editor.stickyScroll.enabled": true,
   "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.fontWeight": "500",
+  "editor.fontWeight": "400",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
 
   "js/ts.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "non-relative",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -27,7 +31,7 @@
   "vim.highlightedyank.enable": true,
   "vim.visualstar": true,
   "vim.sneak": true,
-  "vim.camelCaseMotion.enable": true,
+  "vim.camelCaseMotion": true,
 
   "vim.insertModeKeyBindings": [
     {
@@ -74,19 +78,19 @@
       "commands": ["workbench.action.gotoSymbol"]
     },
     {
-      "before": ["<C-h>"],
+      "before": ["<C-w>", "h"],
       "commands": ["workbench.action.focusLeftGroup"]
     },
     {
-      "before": ["<C-l>"],
+      "before": ["<C-w>", "l"],
       "commands": ["workbench.action.focusRightGroup"]
     },
     {
-      "before": ["<C-k>"],
+      "before": ["<C-w>", "k"],
       "commands": ["workbench.action.focusAboveGroup"]
     },
     {
-      "before": ["<C-j>"],
+      "before": ["<C-w>", "j"],
       "commands": ["workbench.action.focusBelowGroup"]
     },
     {
@@ -183,9 +187,6 @@
     "<C-z>": false
   },
 
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
-  },
   "workbench.iconTheme": "symbols",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -194,7 +195,6 @@
   "window.menuBarVisibility": "classic",
   "symbols.hidesExplorerArrows": false,
 
-  "prettier.jsxSingleQuote": true,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -223,8 +223,6 @@
 
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.fontLigatures.enabled": true,
-  "terminal.integrated.env.windows": {},
-  "terminal.integrated.env.linux": {},
   "terminal.integrated.profiles.windows": {
     "PowerShell": {
       "source": "PowerShell",
@@ -264,7 +262,5 @@
   },
   "workbench.colorTheme": "One Dark Pro",
   "editor.inlineSuggest.edits.showCollapsed": true,
-  "github.copilot.enable": {
-    "*": false
-  }
+  "github.copilot.enable": false
 }

@@ -84,6 +84,22 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | `restore.ps1` | Script para restaurar el backup (Windows) |
 | `restore.sh` | Script para restaurar el backup (Linux/Mac) |
 
+## Editor
+
+| Setting | Qué hace |
+|---|---|
+| `editor.minimap.enabled: false` | Oculta el minimap para ganar espacio vertical |
+| `editor.linkedEditing: true` | Edición sincronizada de tags HTML/JSX |
+| `editor.semanticHighlighting.enabled: true` | Highlighting semántico del LSP |
+| `editor.bracketPairColorization` | Coloreado independiente por tipo de bracket |
+| `editor.stickyScroll.enabled: true` | Sticky scroll en la parte superior del editor |
+| `editor.fontWeight: "400"` | Fira Code en peso regular (mejor legibilidad) |
+| `editor.tabSize: 2` | Indentación de 2 espacios |
+| `files.autoSave: "afterDelay"` | Autosave con delay |
+| `typescript.preferences.importModuleSpecifier: "non-relative"` | Imports TS sin rutas relativas cuando es posible |
+
+> La config de Prettier vive en `.prettierrc` (no en `settings.json`) para que sea portable entre proyectos y clones del repo.
+
 ## Atajos personalizados
 
 > Leader key: `<space>`
@@ -138,10 +154,10 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 
 | Tecla | Acción |
 |---|---|
-| `<C-h>` | Ir al panel izquierdo |
-| `<C-l>` | Ir al panel derecho |
-| `<C-k>` | Ir al panel superior |
-| `<C-j>` | Ir al panel inferior |
+| `<C-w> h` | Ir al panel izquierdo |
+| `<C-w> l` | Ir al panel derecho |
+| `<C-w> k` | Ir al panel superior |
+| `<C-w> j` | Ir al panel inferior |
 | `s v` | Split vertical |
 | `<space> e` | Toggle explorer |
 | `<space> t t` | Toggle terminal |
@@ -188,4 +204,3 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | `visualstar` | En visual, `*`/`#` buscan la selección actual |
 | `sneak` | `s<char><char>` salta a la próxima aparición de 2 chars |
 | `camelCaseMotion` | `w`/`b`/`e` saltan entre segmentos de camelCase / snake_case |
-| `extensions.experimental.affinity` | Acelera VSCodeVim asignándole un core dedicado |
