@@ -28,6 +28,24 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
+## Restaurar
+
+Si querés volver a la config que tenías antes de correr el setup:
+
+- Windows: `.\restore.ps1`
+- Linux / Mac: `./restore.sh`
+
+Por defecto toma el backup más reciente de `.backups/`. Para uno específico:
+
+- Windows: `.\restore.ps1 -Timestamp 2026-07-14_203000`
+- Linux / Mac: `./restore.sh 2026-07-14_203000`
+
+Restaurar también desinstala las extensiones que el setup haya agregado y reinstala las que tenías. Para saltear la confirmación: `-Force` (PowerShell) o `-y` (bash).
+
+## Backup automático
+
+Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `settings.json`, `keybindings.json`, `snippets/` y la lista de extensiones instaladas en `.backups/<timestamp>/` (uno por ejecución). La carpeta `.backups/` está ignorada por git, podés limpiarla cuando quieras.
+
 ## Qué incluye
 
 | Archivo | Descripción |
@@ -37,6 +55,8 @@ chmod +x setup.sh
 | `fire code font/` | Fuente Fira Code (6 variantes) |
 | `setup.ps1` | Script de instalación para Windows |
 | `setup.sh` | Script de instalación para Linux/Mac |
+| `restore.ps1` | Script para restaurar el backup (Windows) |
+| `restore.sh` | Script para restaurar el backup (Linux/Mac) |
 
 ## Atajos personalizados
 
@@ -136,5 +156,10 @@ chmod +x setup.sh
 | `hlsearch` | Resalta todos los resultados de búsqueda |
 | `useSystemClipboard` | Yank/put comparten portapapeles con el SO |
 | `useCtrlKeys` | Habilita atajos como `<C-r>`, `<C-d>`, `<C-u>` |
-| `commentary` | Habilita `gcc` y `gc` para comentar |
+| `commentary` | `gcc` y `gc` para comentar (siempre activo) |
+| `surround` | `ys`/`cs`/`ds` para manipular surrounds (siempre activo) |
+| `highlightedyank` | Resalta brevemente lo que acabás de yankear |
+| `visualstar` | En visual, `*`/`#` buscan la selección actual |
+| `sneak` | `s<char><char>` salta a la próxima aparición de 2 chars |
+| `camelCaseMotion` | `w`/`b`/`e` saltan entre segmentos de camelCase / snake_case |
 | `extensions.experimental.affinity` | Acelera VSCodeVim asignándole un core dedicado |

@@ -24,7 +24,10 @@
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
-  "vim.commentary.enabled": true,
+  "vim.highlightedyank.enable": true,
+  "vim.visualstar": true,
+  "vim.sneak": true,
+  "vim.camelCaseMotion.enable": true,
 
   "vim.insertModeKeyBindings": [
     {
