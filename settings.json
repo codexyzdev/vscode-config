@@ -1,7 +1,4 @@
 {
-  "editor.minimap.enabled": false,
-  "editor.linkedEditing": true,
-  "editor.semanticHighlighting.enabled": true,
   "editor.experimental.asyncTokenization": true,
   "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": "on",
@@ -11,10 +8,11 @@
   "editor.stickyScroll.enabled": true,
   "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.fontWeight": "400",
+  "editor.fontWeight": "500",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
+  "editor.lineNumbers": "relative",
 
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "emmet.includeLanguages": {
@@ -30,7 +28,9 @@
   "vim.highlightedyank.enable": true,
   "vim.visualstar": true,
   "vim.sneak": true,
-  "vim.camelCaseMotion": true,
+  "vim.camelCaseMotion.enable": true,
+  "vim.surround": true,
+  "vim.cursorPositionMode": "keep",
 
   "vim.insertModeKeyBindings": [
     {
@@ -77,19 +77,19 @@
       "commands": ["workbench.action.gotoSymbol"]
     },
     {
-      "before": ["<C-w>", "h"],
+      "before": ["<C-h>"],
       "commands": ["workbench.action.focusLeftGroup"]
     },
     {
-      "before": ["<C-w>", "l"],
+      "before": ["<C-l>"],
       "commands": ["workbench.action.focusRightGroup"]
     },
     {
-      "before": ["<C-w>", "k"],
+      "before": ["<C-k>"],
       "commands": ["workbench.action.focusAboveGroup"]
     },
     {
-      "before": ["<C-w>", "j"],
+      "before": ["<C-j>"],
       "commands": ["workbench.action.focusBelowGroup"]
     },
     {
@@ -177,80 +177,27 @@
       "commands": ["workbench.action.splitEditor"]
     },
     {
-      "before": ["g", "t"],
-      "commands": ["workbench.action.openNextEditor"]
+      "before": ["H"],
+      "commands": ["workbench.action.previousEditor"]
     },
     {
-      "before": ["g", "T"],
-      "commands": ["workbench.action.openPreviousEditor"]
+      "before": ["L"],
+      "commands": ["workbench.action.nextEditor"]
+    }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["editor.action.commentLine"]
     },
     {
-      "before": ["]", "b"],
-      "commands": ["workbench.action.openNextRecentlyUsedEditor"]
+      "before": ["<leader>", "d"],
+      "commands": ["editor.action.copyLinesDownAction"]
     },
     {
-      "before": ["[", "b"],
-      "commands": ["workbench.action.openPreviousRecentlyUsedEditor"]
-    },
-    {
-      "before": ["<C-w>", "H"],
-      "commands": ["workbench.action.moveEditorToLeftGroup"]
-    },
-    {
-      "before": ["<C-w>", "L"],
-      "commands": ["workbench.action.moveEditorToRightGroup"]
-    },
-    {
-      "before": ["<C-w>", "K"],
-      "commands": ["workbench.action.moveEditorToAboveGroup"]
-    },
-    {
-      "before": ["<C-w>", "J"],
-      "commands": ["workbench.action.moveEditorToBelowGroup"]
-    },
-    {
-      "before": ["<leader>", "o"],
-      "commands": ["workbench.action.closeOtherEditors"]
-    },
-    {
-      "before": ["<leader>", "E"],
-      "commands": ["workbench.explorer.fileView.focus"]
-    },
-    {
-      "before": ["<leader>", "1"],
-      "commands": ["workbench.action.openEditorAtIndex1"]
-    },
-    {
-      "before": ["<leader>", "2"],
-      "commands": ["workbench.action.openEditorAtIndex2"]
-    },
-    {
-      "before": ["<leader>", "3"],
-      "commands": ["workbench.action.openEditorAtIndex3"]
-    },
-    {
-      "before": ["<leader>", "4"],
-      "commands": ["workbench.action.openEditorAtIndex4"]
-    },
-    {
-      "before": ["<leader>", "5"],
-      "commands": ["workbench.action.openEditorAtIndex5"]
-    },
-    {
-      "before": ["<leader>", "6"],
-      "commands": ["workbench.action.openEditorAtIndex6"]
-    },
-    {
-      "before": ["<leader>", "7"],
-      "commands": ["workbench.action.openEditorAtIndex7"]
-    },
-    {
-      "before": ["<leader>", "8"],
-      "commands": ["workbench.action.openEditorAtIndex8"]
-    },
-    {
-      "before": ["<leader>", "9"],
-      "commands": ["workbench.action.openEditorAtIndex9"]
+      "before": ["<leader>", "u"],
+      "commands": ["editor.action.copyLinesUpAction"]
     }
   ],
 
@@ -259,9 +206,14 @@
     "<C-v>": false,
     "<C-c>": false,
     "<C-f>": false,
-    "<C-z>": false
+    "<C-z>": false,
+    "<C-p>": false,
+    "<C-w>": false
   },
 
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
   "workbench.iconTheme": "symbols",
   "workbench.sideBar.location": "right",
   "workbench.startupEditor": "none",
@@ -270,6 +222,7 @@
   "window.menuBarVisibility": "classic",
   "symbols.hidesExplorerArrows": false,
 
+  "prettier.jsxSingleQuote": true,
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -298,6 +251,8 @@
 
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.fontLigatures.enabled": true,
+  "terminal.integrated.env.windows": {},
+  "terminal.integrated.env.linux": {},
   "terminal.integrated.profiles.windows": {
     "PowerShell": {
       "source": "PowerShell",
