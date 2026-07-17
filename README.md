@@ -84,6 +84,80 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | `restore.ps1` | Script para restaurar el backup (Windows) |
 | `restore.sh` | Script para restaurar el backup (Linux/Mac) |
 
+## Editor
+
+| Setting | Valor | Qué hace |
+|---|---|---|
+| `editor.fontFamily` | `Fira Code, Consolas, 'Courier New', monospace` | Fuente con ligaduras |
+| `editor.fontLigatures` | `true` | Activa ligaduras tipográficas |
+| `editor.fontWeight` | `400` | Peso de la fuente |
+| `editor.tabSize` | `2` | Tamaño de tabulación |
+| `editor.formatOnSave` | `true` | Formatea al guardar |
+| `files.autoSave` | `afterDelay` | Autosave con delay |
+| `editor.lineNumbers` | `relative` | Números de línea relativos (Vim-friendly) |
+| `editor.cursorBlinking` | `expand` | Cursor expandido al parpadear |
+| `editor.cursorSmoothCaretAnimation` | `on` | Animación suave del cursor |
+| `editor.stickyScroll.enabled` | `true` | Sticky scroll para ver el contexto |
+| `editor.guides.bracketPairs` | `true` | Guías de pares de corchetes |
+| `editor.bracketPairColorization.independentColorPoolPerBracketType` | `true` | Color independiente por tipo de bracket |
+| `editor.guides.highlightActiveBracketPair` | `true` | Resalta el par de brackets activo |
+| `editor.experimental.asyncTokenization` | `true` | Tokenización asíncrona (mejor performance) |
+| `editor.inlineSuggest.edits.showCollapsed` | `true` | Inline suggestions colapsadas |
+| `js/ts.updateImportsOnFileMove.enabled` | `always` | Actualiza imports al mover archivos |
+| `emmet.includeLanguages` | `{ "javascript": "javascriptreact" }` | Emmet en archivos JSX |
+
+## Apariencia y UI
+
+| Setting | Valor | Qué hace |
+|---|---|---|
+| `workbench.colorTheme` | `One Dark Pro` | Tema de color |
+| `workbench.iconTheme` | `symbols` | Iconos estilo símbolos |
+| `workbench.sideBar.location` | `right` | Sidebar a la derecha |
+| `workbench.startupEditor` | `none` | Sin pantalla de bienvenida |
+| `workbench.navigationControl.enabled` | `false` | Oculta controles de navegación |
+| `workbench.layoutControl.enabled` | `false` | Oculta control de layout |
+| `window.menuBarVisibility` | `classic` | Menu bar visible (Alt para toggle) |
+| `symbols.hidesExplorerArrows` | `false` | Muestra flechas en el explorer |
+
+## Formateo por lenguaje
+
+Prettier es el formateador por defecto para la mayoría de lenguajes, con configuración específica:
+
+| Setting | Valor | Qué hace |
+|---|---|---|
+| `prettier.jsxSingleQuote` | `true` | Comillas simples en JSX |
+| `[html]` | `prettier-vscode` | Formatter default HTML |
+| `[javascriptreact]` | `prettier-vscode` | Formatter default JSX |
+| `[typescriptreact]` | `prettier-vscode` | Formatter default TSX |
+| `[css]` | `prettier-vscode` | Formatter default CSS |
+| `[jsonc]` | `prettier-vscode` | Formatter default JSONC |
+| `[astro]` | `astro-vscode` | Formatter default Astro |
+| `[python]` | `black-formatter` | Formatter default Python (Black) |
+
+## Git
+
+| Setting | Valor | Qué hace |
+|---|---|---|
+| `git.autofetch` | `true` | Fetch automático del remoto |
+| `git.enableSmartCommit` | `true` | Commit sin stage explícito |
+
+## Terminal
+
+| Setting | Valor | Qué hace |
+|---|---|---|
+| `terminal.integrated.defaultProfile.windows` | `Git Bash` | Perfil por defecto en Windows |
+| `terminal.integrated.fontLigatures.enabled` | `true` | Ligaduras en la terminal |
+| `terminal.integrated.profiles.windows` | PowerShell, CMD, Git Bash, Cmder | Perfiles disponibles |
+
+## Otros
+
+| Setting | Valor | Qué hace |
+|---|---|---|
+| `security.allowedUNCHosts` | `["wsl.localhost"]` | Permite links UNCHost para WSL |
+| `workbench.editorAssociations` | `*.svg → default` | Abre SVG con editor por defecto |
+| `json.schemaDownload.trustedDomains` | schemastore, raw.githubusercontent, biomejs, etc. | Dominios confiables para descargar schemas |
+| `github.copilot.enable` | `false` | Copilot deshabilitado globalmente |
+
 ## Atajos personalizados
 
 > Leader key: `<space>`
@@ -149,6 +223,8 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | `<space> t n` | Nueva terminal |
 | `<space> b d` | Cerrar buffer actual |
 | `<space> q` | Cerrar todos los editores |
+| `H` | Editor anterior |
+| `L` | Editor siguiente |
 
 #### Búsqueda
 
@@ -172,16 +248,20 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | `<C-v>` | Pegar |
 | `<C-f>` | Buscar en archivo |
 | `<C-z>` | Deshacer |
+| `<C-p>` | Quick Open (archivos) |
+| `<C-w>` | Cerrar editor |
 
 ### Comportamiento Vim activo
 
 | Setting | Qué hace |
 |---|---|
+| `vim.leader` | Leader key configurada como `<space>` |
 | `easymotion` | Movimiento rápido con `<leader><leader>` |
 | `incsearch` | Búsqueda incremental mientras escribís |
 | `hlsearch` | Resalta todos los resultados de búsqueda |
 | `useSystemClipboard` | Yank/put comparten portapapeles con el SO |
 | `useCtrlKeys` | Habilita atajos como `<C-r>`, `<C-d>`, `<C-u>` |
+| `vim.cursorPositionMode` | `keep` — mantiene la posición del cursor al volver |
 | `commentary` | `gcc` y `gc` para comentar (siempre activo) |
 | `surround` | `ys`/`cs`/`ds` para manipular surrounds (siempre activo) |
 | `highlightedyank` | Resalta brevemente lo que acabás de yankear |

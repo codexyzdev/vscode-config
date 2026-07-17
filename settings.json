@@ -8,10 +8,11 @@
   "editor.stickyScroll.enabled": true,
   "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.fontWeight": "500",
+  "editor.fontWeight": "400",
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "files.autoSave": "afterDelay",
+  "editor.lineNumbers": "relative",
 
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "emmet.includeLanguages": {
@@ -28,6 +29,8 @@
   "vim.visualstar": true,
   "vim.sneak": true,
   "vim.camelCaseMotion.enable": true,
+  "vim.surround": true,
+  "vim.cursorPositionMode": "keep",
 
   "vim.insertModeKeyBindings": [
     {
@@ -172,6 +175,29 @@
     {
       "before": ["s", "v"],
       "commands": ["workbench.action.splitEditor"]
+    },
+    {
+      "before": ["H"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["L"],
+      "commands": ["workbench.action.nextEditor"]
+    }
+  ],
+
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["editor.action.commentLine"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "commands": ["editor.action.copyLinesDownAction"]
+    },
+    {
+      "before": ["<leader>", "u"],
+      "commands": ["editor.action.copyLinesUpAction"]
     }
   ],
 
@@ -180,7 +206,9 @@
     "<C-v>": false,
     "<C-c>": false,
     "<C-f>": false,
-    "<C-z>": false
+    "<C-z>": false,
+    "<C-p>": false,
+    "<C-w>": false
   },
 
   "extensions.experimental.affinity": {
