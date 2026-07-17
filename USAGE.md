@@ -91,6 +91,59 @@ dbaeumer.vscode-eslint
 
 Al volver a correr `setup`, se instalan las que falten y se desinstalan las que ya no estén listadas (a menos que estén en `extensions_keep.txt` si lo creás).
 
+## Vim: lineas relativas para moverte mas rapido
+
+Con `editor.lineNumbers: "relative"` cada línea muestra su **distancia al cursor**, no su número real. La línea actual sigue mostrando el número real para saber dónde estás.
+
+```
+      8   ← 8 líneas arriba
+      3   ← 3 líneas arriba
+      2
+      1
+  →  42  ← línea actual (número real)
+      1   ← 1 línea abajo
+      4
+```
+
+El truco: leer el número y usarlo como **contador de motion**.
+
+| Querés... | Hacé |
+|---|---|
+| Bajar 8 líneas | `8j` |
+| Subir 3 líneas | `3k` |
+| Ir a esa línea y entrar en insert | `8j i` o `8j a` |
+| Borrar 4 líneas desde ahí | `8j 4dd` |
+| Copiar hasta esa línea | `8j y}` |
+| Yankear 5 líneas abajo | `8j 5yy` |
+
+Con números absolutos tendrías que hacer `60G` o `:60` (escribir el número). Con relativos solo leés el dígito en pantalla y lo ejecutás — tu cerebro lee directo la distancia.
+
+### Movimientos con conteo
+
+| Motion | Qué hace |
+|---|---|
+| `5j` / `5k` | 5 líneas abajo / arriba |
+| `3w` / `3b` | 3 palabras adelante / atrás |
+| `2}` | 2 párrafos abajo |
+| `2)` | 2 frases adelante |
+| `7G` | Ir a línea 7 (casi no lo usás con relativas) |
+| `gg` / `G` | Inicio / fin del archivo |
+| `H` / `M` / `L` | Top / middle / bottom de la pantalla visible |
+
+### Ejemplo real
+
+Estás en la línea 42 y querés borrar la línea 60:
+
+1. Leés `18` abajo del cursor.
+2. Tecleás `18j` → saltás directo a la 60.
+3. Tecleás `dd` → la borrás.
+
+### Combinar con lo que ya tenés
+
+- **EasyMotion** (`<leader><leader> s<char>`) para saltos largos sin contar.
+- **Sneak** (`s<char><char>`) para saltar a 2 chars visibles.
+- **Vim surround** (`ys`/`cs`/`ds`) para manipular brackets y comillas.
+
 ## Restaurar un backup
 
 Cada ejecución de `setup` guarda un backup nuevo. Para volver a un estado anterior:
