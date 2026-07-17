@@ -20,7 +20,10 @@ echo -e "\033[33mEsto va a:\033[0m"
 echo -e "\033[33m  - Respaldar tu config actual en .backups/<timestamp>/ (si existe)\033[0m"
 echo -e "\033[33m  - Instalar la fuente Fira Code\033[0m"
 echo -e "\033[33m  - Copiar settings.json a $CODE_USER\033[0m"
-echo -e "\033[33m  - Instalar $EXT_COUNT extensiones de extensions.txt\033[0m"
+echo -e "\033[33m  - Listar $EXT_COUNT extensiones instaladas (para backup)\033[0m"
+echo ""
+echo -e "\033[36mNota: las extensiones NO se instalan desde aca.\033[0m"
+echo -e "\033[36m      Usa la carpeta .vscode/ o instala manualmente.\033[0m"
 echo ""
 
 if [[ $SKIP_CONFIRM -eq 0 ]]; then
@@ -32,7 +35,7 @@ if [[ $SKIP_CONFIRM -eq 0 ]]; then
 fi
 
 echo ""
-echo -e "\033[33m[1/4] Respaldando config previa...\033[0m"
+echo -e "\033[33m[1/3] Respaldando config previa...\033[0m"
 TIMESTAMP="$(date +%Y-%m-%d_%H%M%S)"
 BACKUP_DIR="$BACKUP_ROOT/$TIMESTAMP"
 mkdir -p "$BACKUP_DIR"
@@ -65,7 +68,7 @@ else
 fi
 
 echo ""
-echo -e "\033[33m[2/4] Instalando fuentes Fira Code...\033[0m"
+echo -e "\033[33m[2/3] Instalando fuentes Fira Code...\033[0m"
 case "$(uname -s)" in
     Darwin)  FONT_DIR="$HOME/Library/Fonts" ;;
     Linux)   FONT_DIR="$HOME/.local/share/fonts" ;;
@@ -77,21 +80,12 @@ if command -v fc-cache >/dev/null 2>&1; then fc-cache -f "$FONT_DIR"; fi
 echo -e "\033[32m       Listo.\033[0m"
 
 echo ""
-echo -e "\033[33m[3/4] Copiando settings.json...\033[0m"
+echo -e "\033[33m[3/3] Copiando settings.json...\033[0m"
 mkdir -p "$CODE_USER"
 cp "$SCRIPT_DIR/settings.json" "$CODE_USER/settings.json"
 echo -e "\033[32m       Listo.\033[0m"
 
 echo ""
-echo -e "\033[33m[4/4] Instalando extensiones...\033[0m"
-while IFS= read -r ext; do
-    ext=$(echo "$ext" | xargs)
-    if [[ -n "$ext" && "$ext" != \#* ]]; then
-        printf "       %s ..." "$ext"
-        code --install-extension "$ext" --force >/dev/null 2>&1
-        echo -e "\033[32m OK\033[0m"
-    fi
-done < "$SCRIPT_DIR/extensions.txt"
-
-echo ""
 echo -e "\033[36m=== Setup completado ===\033[0m"
+echo -e "\033[36mPara instalar las extensiones recomendadas, abri VS Code y usa la\033[0m"
+echo -e "\033[36mcarpeta .vscode/extensions.json de este repo, o instalalas manualmente.\033[0m"

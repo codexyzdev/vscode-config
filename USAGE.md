@@ -46,11 +46,12 @@ Al ejecutarlo, en orden:
 
 1. **Backup** de tu `settings.json`, `keybindings.json`, `snippets/` y lista de extensiones actuales en `.backups/<timestamp>/`.
 2. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS).
-3. **Instala** todas las extensiones listadas en `extensions.txt` (las que falten).
-4. **Copia** la fuente Fira Code desde `fire code font/` a la carpeta de fuentes del sistema.
-5. **Muestra** un resumen con qué cambió y cómo restaurar.
+3. **Copia** la fuente Fira Code desde `fire code font/` a la carpeta de fuentes del sistema.
+4. **Muestra** un resumen con qué cambió y cómo restaurar.
 
 Nada se reinstala si ya está — el script es idempotente.
+
+> **Las extensiones NO se instalan desde el setup** (la instalación automática solía fallar). Para instalarlas, usá la carpeta `.vscode/` o hacelo manualmente — ver [Instalar extensiones](#instalar-extensiones).
 
 ## Personalizar la configuración
 
@@ -79,9 +80,9 @@ Los atajos de Vim están en `vim.normalModeKeyBindingsNonRecursive` dentro de `s
 }
 ```
 
-### Agregar o quitar extensiones
+### Editar la lista de extensiones
 
-Editá `extensions.txt`, una por línea:
+Editá `extensions.txt` y `.vscode/extensions.json` (deben estar en sync). Una por línea / por entry del array:
 
 ```
 vscodevim.vim
@@ -89,7 +90,30 @@ esbenp.prettier-vscode
 dbaeumer.vscode-eslint
 ```
 
-Al volver a correr `setup`, se instalan las que falten y se desinstalan las que ya no estén listadas (a menos que estén en `extensions_keep.txt` si lo creás).
+## Instalar extensiones
+
+Hay tres formas, de más fácil a más manual:
+
+### 1. Drop-in con `.vscode/extensions.json` (Recomendado)
+
+Descargá solo la carpeta `.vscode/` y ponéla en la raíz de tu proyecto. Al abrirlo, VS Code te ofrece instalar las recomendadas.
+
+```bash
+# Ejemplo: clonar solo la carpeta .vscode
+npx degit codexyzdev/vscode-config/.vscode tu-proyecto/.vscode
+```
+
+### 2. Desde VS Code
+
+En el repo, abrí la vista de extensiones, filtrá por `@recommended` (en el dropdown). Te aparece la lista completa y un botón "Install All" arriba.
+
+### 3. Manualmente desde la terminal
+
+```bash
+while read ext; do
+  code --install-extension "$ext"
+done < extensions.txt
+```
 
 ## Vim: lineas relativas para moverte mas rapido
 

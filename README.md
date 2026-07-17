@@ -64,7 +64,7 @@ Por defecto toma el backup más reciente de `.backups/`. Para uno específico:
 - Windows: `.\restore.ps1 -Timestamp 2026-07-14_203000`
 - Linux / Mac: `./restore.sh 2026-07-14_203000`
 
-Restaurar también desinstala las extensiones que el setup haya agregado y reinstala las que tenías. Para saltear la confirmación: `-Force` (PowerShell) o `-y` (bash).
+Restaurar también sincroniza las extensiones: desinstala las que no estaban en el backup y reinstala las que tenías antes. Para saltear la confirmación: `-Force` (PowerShell) o `-y` (bash).
 
 ## Backup automático
 
@@ -75,7 +75,7 @@ Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `set
 | Archivo | Descripción |
 |---|---|
 | `settings.json` | Config del editor, Vim, formateo, terminal, Git |
-| `extensions.txt` | Lista de extensiones a instalar |
+| `extensions.txt` | Lista de extensiones (referencia / backup) |
 | `fire code font/` | Fuente Fira Code (6 variantes) |
 | `package.json` | Config npm + entry point para `npx` |
 | `bin/cli.js` | Wrapper multiplataforma que detecta el SO y delega al script correspondiente |

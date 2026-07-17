@@ -19,7 +19,10 @@ Write-Host "Esto va a:" -ForegroundColor Yellow
 Write-Host "  - Respaldar tu config actual en .backups/<timestamp>/ (si existe)" -ForegroundColor Yellow
 Write-Host "  - Instalar la fuente Fira Code" -ForegroundColor Yellow
 Write-Host "  - Copiar settings.json a $codeUser" -ForegroundColor Yellow
-Write-Host "  - Instalar $extCount extensiones de extensions.txt" -ForegroundColor Yellow
+Write-Host "  - Listar $extCount extensiones instaladas (para backup)" -ForegroundColor Yellow
+Write-Host ""
+Write-Host "Nota: las extensiones NO se instalan desde aca." -ForegroundColor Cyan
+Write-Host "      Usa la carpeta .vscode/ o instala manualmente." -ForegroundColor Cyan
 Write-Host ""
 
 if (-not $Force) {
@@ -31,7 +34,7 @@ if (-not $Force) {
 }
 
 Write-Host ""
-Write-Host "[1/4] Respaldando config previa..." -ForegroundColor Yellow
+Write-Host "[1/3] Respaldando config previa..." -ForegroundColor Yellow
 $backupRoot = Join-Path $scriptDir ".backups"
 $timestamp = Get-Date -Format "yyyy-MM-dd_HHmmss"
 $backupDir = Join-Path $backupRoot $timestamp
@@ -70,7 +73,7 @@ if ($hasBackup) {
 }
 
 Write-Host ""
-Write-Host "[2/4] Instalando fuentes Fira Code..." -ForegroundColor Yellow
+Write-Host "[2/3] Instalando fuentes Fira Code..." -ForegroundColor Yellow
 $fontDir = "$env:LOCALAPPDATA\Microsoft\Windows\Fonts"
 if (-not (Test-Path $fontDir)) { New-Item -ItemType Directory -Path $fontDir -Force | Out-Null }
 Get-ChildItem ".\fire code font\ttf\*.ttf" | ForEach-Object {
@@ -82,20 +85,11 @@ Get-ChildItem ".\fire code font\ttf\*.ttf" | ForEach-Object {
 Write-Host "       Listo." -ForegroundColor Green
 
 Write-Host ""
-Write-Host "[3/4] Copiando settings.json..." -ForegroundColor Yellow
+Write-Host "[3/3] Copiando settings.json..." -ForegroundColor Yellow
 Copy-Item -Path ".\settings.json" -Destination "$codeUser\settings.json" -Force
 Write-Host "       Listo." -ForegroundColor Green
 
 Write-Host ""
-Write-Host "[4/4] Instalando extensiones..." -ForegroundColor Yellow
-Get-Content .\extensions.txt | ForEach-Object {
-    $ext = $_.Trim()
-    if ($ext -and -not $ext.StartsWith("#")) {
-        Write-Host "       $ext ..." -NoNewline
-        code --install-extension $ext --force 2>$null
-        Write-Host " OK" -ForegroundColor Green
-    }
-}
-
-Write-Host ""
 Write-Host "=== Setup completado ===" -ForegroundColor Cyan
+Write-Host "Para instalar las extensiones recomendadas, abri VS Code y usa la"
+Write-Host "carpeta .vscode/extensions.json de este repo, o instalalas manualmente."
