@@ -45,13 +45,18 @@ chmod +x setup.sh
 Al ejecutarlo, en orden:
 
 1. **Backup** de tu `settings.json`, `keybindings.json`, `snippets/` y lista de extensiones actuales en `.backups/<timestamp>/`.
-2. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS).
-3. **Copia** la fuente Fira Code desde `fire code font/` a la carpeta de fuentes del sistema.
-4. **Muestra** un resumen con qué cambió y cómo restaurar.
+2. **Instala las extensiones** listadas en `extensions.txt` con `code --install-extension`, en grupos de 4, con barra de progreso Unicode.
+3. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS).
+4. **Copia y registra** la fuente Fira Code desde `fire code font/` en el sistema:
+   - **Windows**: P/Invoke (`gdi32::AddFontResource`) + entrada en `HKCU\Software\Microsoft\Windows NT\CurrentVersion\Fonts` + `SendMessageTimeout(WM_FONTCHANGE)`. Sin permisos de admin.
+   - **macOS**: copia a `~/Library/Fonts` + `atsutil databases -rebuild`.
+   - **Linux**: copia a `~/.local/share/fonts` + `fc-cache -f`.
+5. **Copia** `keybindings.json` y `snippets/` si existen en el repo.
+6. **Muestra** un resumen con qué cambió y cómo restaurar.
 
-Nada se reinstala si ya está — el script es idempotente.
+El script es idempotente: lo podés correr varias veces sin romper nada. Si una extensión ya está instalada, la re-instala con `--force` (rápido). Si las fuentes ya están registradas, no duplica la entrada del registro.
 
-> **Las extensiones NO se instalan desde el setup** (la instalación automática solía fallar). Para instalarlas, usá la carpeta `.vscode/` o hacelo manualmente — ver [Instalar extensiones](#instalar-extensiones).
+> Si VS Code no está en PATH, el setup aborta con un mensaje accionable antes de tocar nada. Para sumarlo: `View > Command Palette > Shell Command: Install 'code' command in PATH`.
 
 ## Personalizar la configuración
 
@@ -90,11 +95,11 @@ esbenp.prettier-vscode
 dbaeumer.vscode-eslint
 ```
 
-## Instalar extensiones
+## Instalar extensiones (en tus proyectos)
 
-Hay tres formas, de más fácil a más manual:
+El setup ya instala las extensiones recomendadas a nivel de usuario. Si querés recomendar un subset en un proyecto puntual, usá la carpeta `.vscode/extensions.json`:
 
-### 1. Drop-in con `.vscode/extensions.json` (Recomendado)
+### Drop-in con `.vscode/extensions.json` (Recomendado)
 
 Descargá solo la carpeta `.vscode/` y ponéla en la raíz de tu proyecto. Al abrirlo, VS Code te ofrece instalar las recomendadas.
 
@@ -103,17 +108,9 @@ Descargá solo la carpeta `.vscode/` y ponéla en la raíz de tu proyecto. Al ab
 npx degit codexyzdev/vscode-config/.vscode tu-proyecto/.vscode
 ```
 
-### 2. Desde VS Code
+### Desde VS Code
 
 En el repo, abrí la vista de extensiones, filtrá por `@recommended` (en el dropdown). Te aparece la lista completa y un botón "Install All" arriba.
-
-### 3. Manualmente desde la terminal
-
-```bash
-while read ext; do
-  code --install-extension "$ext"
-done < extensions.txt
-```
 
 ## Vim: lineas relativas para moverte mas rapido
 
@@ -239,13 +236,27 @@ git pull
 ## Solución de problemas
 
 **`code` no se reconoce como comando**
-Abrí VS Code, `Ctrl+Shift+P` → "Shell Command: Install 'code' command in PATH", reiniciá la terminal.
+El setup aborta al inicio con un mensaje accionable. Lo que tenés que hacer:
+1. Abrí VS Code.
+2. `View > Command Palette > Shell Command: Install 'code' command in PATH`.
+3. Cerrá la terminal y abrí una nueva.
+4. Corré el setup de nuevo.
 
 **Los atajos de Vim no funcionan**
 Verificá que la extensión `vscodevim.vim` esté instalada (`code --list-extensions | grep vim`). Si no, corré `setup` de nuevo.
 
 **Una extensión no se instala**
-Revisá el ID en `extensions.txt`. El formato es `publisher.name`, lo encontrás en la página de la extensión en el Marketplace.
+Al final del setup te aparece la lista de las que fallaron. Causas comunes:
+- ID mal escrito en `extensions.txt` (el formato es `publisher.name`, lo encontrás en la URL de la página de la extensión en el Marketplace).
+- La extensión fue removida o renombrada.
+- Sin conexión a internet, o el Marketplace está caido.
+
+Reintentá con `code --install-extension <id>` y, si falla, mirá el mensaje de error.
+
+**Las fuentes no aparecen en VS Code**
+- **Windows**: si corriste el setup desde bash/Git Bash en vez de PowerShell, las fuentes se copiaron pero no se registraron. Volvé a correr `setup.ps1` desde PowerShell.
+- **macOS**: si `atsutil` no está disponible (raro), reiniciá sesión y debería funcionar.
+- **Linux**: si `fc-cache` no está disponible, instalá `fontconfig` o corré `fc-cache -fv` manualmente.
 
 **El backup no se restauró como esperabas**
 Los backups se guardan en `.backups/<timestamp>/`. Inspeccioná manualmente:

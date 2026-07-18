@@ -70,12 +70,24 @@ Restaurar también sincroniza las extensiones: desinstala las que no estaban en 
 
 Cada vez que corrés `setup`, antes de tocar nada se guarda una copia de tu `settings.json`, `keybindings.json`, `snippets/` y la lista de extensiones instaladas en `.backups/<timestamp>/` (uno por ejecución). La carpeta `.backups/` está ignorada por git, podés limpiarla cuando quieras.
 
+## Qué hace el setup
+
+Al ejecutarlo, en orden:
+
+1. **Backup** de tu `settings.json`, `keybindings.json`, `snippets/` y lista de extensiones actuales en `.backups/<timestamp>/`.
+2. **Instala las extensiones** listadas en `extensions.txt` (4 en paralelo, con barra de progreso).
+3. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS).
+4. **Copia** la fuente Fira Code desde `fire code font/` y la registra en el sistema (P/Invoke + registro en Windows, `atsutil` en macOS, `fc-cache` en Linux).
+5. **Copia** `keybindings.json` y `snippets/` si existen en el repo.
+
+> Si VS Code no está en PATH, el setup aborta con un mensaje accionable. Para sumarlo: `View > Command Palette > Shell Command: Install 'code' command in PATH`.
+
 ## Qué incluye
 
 | Archivo | Descripción |
 |---|---|
 | `settings.json` | Config del editor, Vim, formateo, terminal, Git |
-| `extensions.txt` | Lista de extensiones (referencia / backup) |
+| `extensions.txt` | Lista de extensiones a instalar (54) |
 | `fire code font/` | Fuente Fira Code (6 variantes) |
 | `package.json` | Config npm + entry point para `npx` |
 | `bin/cli.js` | Wrapper multiplataforma que detecta el SO y delega al script correspondiente |
