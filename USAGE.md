@@ -46,13 +46,11 @@ Al ejecutarlo, en orden:
 
 1. **Backup** de tu `settings.json`, `keybindings.json`, `snippets/` y lista de extensiones actuales en `.backups/<timestamp>/`.
 2. **Instala las extensiones** listadas en `extensions.txt` con `code --install-extension`, en grupos de 4, con barra de progreso Unicode.
-3. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS).
-4. **Copia y registra** la fuente Fira Code desde `fire code font/` en el sistema:
+3. **Copia y registra** la fuente Fira Code desde `fire code font/` en el sistema:
    - **Windows**: P/Invoke (`gdi32::AddFontResource`) + entrada en `HKCU\Software\Microsoft\Windows NT\CurrentVersion\Fonts` + `SendMessageTimeout(WM_FONTCHANGE)`. Sin permisos de admin.
    - **macOS**: copia a `~/Library/Fonts` + `atsutil databases -rebuild`.
    - **Linux**: copia a `~/.local/share/fonts` + `fc-cache -f`.
-5. **Copia** `keybindings.json` y `snippets/` si existen en el repo.
-6. **Muestra** un resumen con qué cambió y cómo restaurar.
+4. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS), junto con `keybindings.json` y `snippets/` si existen en el repo. Al final te pide recargar la ventana (`Developer: Reload Window`) para aplicar todo.
 
 El script es idempotente: lo podés correr varias veces sin romper nada. Si una extensión ya está instalada, la re-instala con `--force` (rápido). Si las fuentes ya están registradas, no duplica la entrada del registro.
 

@@ -31,7 +31,7 @@ Ejemplos de búsquedas útiles:
 | `Ctrl+Shift+P` → "Focus Active Editor Group" | Vuelve al editor estés donde estés |
 | `Esc` (en la mayoría de widgets) | Cierra el widget y vuelve al foco anterior |
 
-> Con esta config Vim pisa `Ctrl+B`, `Ctrl+J`, `Ctrl+P` y `Ctrl+W` — usá la Command Palette o los atajos con `<leader>` para esas acciones.
+> Con esta config Vim pisa `Ctrl+B` (page-up) y `Ctrl+J` (foco al panel inferior) dentro del editor. En cambio `Ctrl+P` y `Ctrl+W` están liberados a VS Code: `Ctrl+P` abre Quick Open y `Ctrl+W` cierra el editor actual (cuidado, usá `<space> b d`).
 
 ---
 
@@ -52,7 +52,7 @@ Ejemplos de búsquedas útiles:
 | Acción | Atajo |
 |---|---|
 | Volver al editor | `Ctrl+1` |
-| Toggle sidebar | `Ctrl+B` (liberado por Vim, anda nativo) |
+| Toggle sidebar | `Ctrl+B` (con el foco en el Explorer anda nativo; en el editor Vim lo usa como page-up) |
 
 ### Estoy en Source Control / Git panel y quiero volver
 

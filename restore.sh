@@ -3,7 +3,22 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BACKUP_ROOT="$SCRIPT_DIR/.backups"
-CODE_USER="$HOME/.config/Code/User"
+
+case "$(uname -s)" in
+    Darwin)
+        CODE_USER="$HOME/Library/Application Support/Code/User"
+        ;;
+    MINGW*|MSYS*|CYGWIN*)
+        WIN_APPDATA="${APPDATA:-$HOME/AppData/Roaming}"
+        if command -v cygpath >/dev/null 2>&1; then
+            WIN_APPDATA="$(cygpath -u "$WIN_APPDATA")"
+        fi
+        CODE_USER="$WIN_APPDATA/Code/User"
+        ;;
+    *)
+        CODE_USER="$HOME/.config/Code/User"
+        ;;
+esac
 
 FORCE=0
 TARGET=""

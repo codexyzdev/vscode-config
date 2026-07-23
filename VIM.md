@@ -12,11 +12,13 @@ Guía de referencia para usar VSCodeVim con esta configuración. Asume que conoc
 |---|---|---|
 | Normal | `<Esc>` o `jj` desde Insert | — |
 | Insert | `i`, `a`, `o`, `O`, `s`, etc. | `<Esc>` o `jj` |
-| Visual | `v` (carácter), `V` (línea), `<C-v>` (bloque) | `<Esc>` o `jj` |
+| Visual | `v` (carácter), `V` (línea) | `<Esc>` o `jj` |
 | Command-line | `:` (comandos ex) | `<Esc>` |
 | Search | `/` o `?` | `<Esc>` |
 
 `jj` mapeado desde Insert es la única forma rápida de volver a Normal sin mover la mano a `<Esc>`.
+
+> El modo Visual-bloque (`<C-v>`) no está disponible: `<C-v>` está liberado a VS Code (pegar).
 
 ---
 
@@ -34,12 +36,14 @@ Guía de referencia para usar VSCodeVim con esta configuración. Asume que conoc
 | `gg` / `G` | Inicio / fin del archivo |
 | `{` / `}` | Párrafo anterior / siguiente |
 | `%` | Saltar al bracket que matchea |
-| `H` `M` `L` | Top / middle / bottom de la pantalla |
+| `M` | Middle de la pantalla |
 | `C-u` / `C-d` | Media página arriba / abajo |
 | `C-b` / `C-f` | Página completa arriba / abajo |
 | `C-y` / `C-e` | Scroll sin mover cursor |
 
 > `w`/`b`/`e` se comportan con `camelCaseMotion`: en `getUserById` saltan entre `get` / `User` / `By` / `Id`. Idem para `snake_case`.
+
+> `H` y `L` están rebindeados a editor anterior/siguiente (ver [Tabs y buffers](#tabs-y-buffers)); el "top/bottom de pantalla" nativo de Vim queda sobreescrito.
 
 ### Lineas relativas: motion con conteo
 
@@ -73,7 +77,7 @@ Con números absolutos tendrías que hacer `60G` o `:60`. Con relativos leés el
 Combina bien con:
 - **EasyMotion** (`<leader><leader> s<char>`) para saltos largos sin contar
 - **Sneak** (`s<char><char>`) para ir a 2 chars visibles
-- **`H` / `M` / `L`** para top/middle/bottom de la pantalla
+- **`M`** para ir al medio de la pantalla (`H`/`L` están rebindeados a cambiar de editor)
 
 ---
 
@@ -189,16 +193,16 @@ Ejemplo: `ci"` cambia el contenido dentro de comillas, `di(` borra lo de adentro
 
 ## Paneles, splits y foco
 
-### Mover foco entre grupos (estilo tmux)
+### Mover foco entre grupos
 
 | Tecla | Acción |
 |---|---|
-| `<C-w> h` | Foco al panel izquierdo |
-| `<C-w> l` | Foco al panel derecho |
-| `<C-w> k` | Foco al panel superior |
-| `<C-w> j` | Foco al panel inferior |
+| `<C-h>` | Foco al panel izquierdo |
+| `<C-l>` | Foco al panel derecho |
+| `<C-k>` | Foco al panel superior |
+| `<C-j>` | Foco al panel inferior |
 
-> Cada `Ctrl+w` espera la siguiente tecla; no se pisa con la navegación `h/j/k/l` pura.
+> Son `Ctrl` + letra directo (no el prefijo `<C-w>` de Vim): `<C-w>` está liberado a VS Code, que lo usa para cerrar el editor.
 
 ### Splits y barras laterales
 
@@ -206,7 +210,6 @@ Ejemplo: `ci"` cambia el contenido dentro de comillas, `di(` borra lo de adentro
 |---|---|
 | `s v` | Split vertical |
 | `<space> e` | Toggle explorer (mostrar/ocultar) |
-| `<space> E` | Focus explorer (abre y mueve el foco al file tree) |
 
 Dentro del file tree, las teclas de Vim siguen funcionando: `j`/`k` para moverte, `o` o `Enter` para abrir, `Escape` para volver al editor.
 
@@ -220,29 +223,18 @@ VS Code no tiene "tabs" al estilo Vim; tiene **editores** dentro de **grupos**. 
 
 | Tecla | Acción |
 |---|---|
-| `g t` | Siguiente editor en el grupo activo (estilo `:tabnext`) |
-| `g T` | Editor anterior en el grupo activo (estilo `:tabprev`) |
-| `] b` | Siguiente editor en historial MRU (entre todos los grupos) |
-| `[ b` | Editor anterior en historial MRU |
-| `<space> 1` … `<space> 9` | Ir al editor N del grupo activo (estilo `1gt`) |
+| `H` | Editor anterior en el grupo activo |
+| `L` | Editor siguiente en el grupo activo |
+| `g t` | Siguiente editor (nativo de VSCodeVim, estilo `:tabnext`) |
+| `g T` | Editor anterior (nativo de VSCodeVim, estilo `:tabprev`) |
 
-### Mover editor entre grupos
-
-| Tecla | Acción |
-|---|---|
-| `<C-w> H` | Mover editor al grupo de la izquierda |
-| `<C-w> L` | Mover al grupo de la derecha |
-| `<C-w> K` | Mover al grupo de arriba |
-| `<C-w> J` | Mover al grupo de abajo |
-
-> Minúscula = foco (`<C-w> h` ya enfoca), mayúscula = mover.
+> `H`/`L` son bindings de esta config y pisan el "top/bottom de pantalla" nativo de Vim.
 
 ### Cerrar
 
 | Tecla | Acción |
 |---|---|
 | `<space> b d` | Cerrar editor actual |
-| `<space> o` | Cerrar todos los demás editores |
 | `<space> q` | Cerrar todos los editores |
 
 ---
@@ -295,12 +287,14 @@ Estas combinaciones **no** las maneja Vim; van directo a VS Code:
 | Tecla | Acción |
 |---|---|
 | `<C-a>` | Seleccionar todo |
-| `<C-c>` | Copiar (en modo Normal va a Vim, en Insert/Visual sí copia) |
-| `<C-v>` | Pegar (idem) |
+| `<C-c>` | Copiar |
+| `<C-v>` | Pegar (por eso no hay Visual-bloque con `<C-v>`) |
 | `<C-f>` | Buscar en archivo |
 | `<C-z>` | Undo nativo |
+| `<C-p>` | Quick Open nativo |
+| `<C-w>` | Cerrar editor (nativo de VS Code — cuidado, usá `<space> b d`) |
 
-> En Insert/Visual estas sí pasan a VS Code, así no perdés los atajos estándar al editar texto.
+> Están declaradas en `vim.handleKeys` con `false`, así que VS Code las maneja en todos los modos.
 
 ---
 
@@ -368,9 +362,9 @@ Si nunca usaste VS Code (o venís de otro editor puro), esto es lo mínimo para 
 | `Ctrl+` ` (backtick) | Toggle terminal integrada |
 | `Ctrl+B` | Toggle sidebar |
 | `Ctrl+J` | Toggle panel inferior |
-| `Ctrl+W` | Cerrar editor actual (cuidado: pisa `<C-w>` de Vim — usá `<space> b d`) |
+| `Ctrl+W` | Cerrar editor actual (Vim lo libera a VS Code — andá con cuidado, usá `<space> b d`) |
 
-> `Ctrl+W` lo libera Vim, por eso tenés `<space> b d` para cerrar. Y `Ctrl+P` también lo intercepta Vim: usá `<space> f f` para Quick Open.
+> `Ctrl+P` también está liberado y funciona nativo (Quick Open); si preferís mantener las manos en home row, `<space> f f` hace lo mismo.
 
 ### Settings: UI vs JSON
 
@@ -395,13 +389,11 @@ Las settings, extensions y keybindings se pueden sincronizar entre máquinas con
 | `<space> f f` | Quick Open (buscar archivo) |
 | `<space> f g` | Grep en archivos |
 | `<space> e` | Toggle explorer |
-| `<space> E` | Focus explorer |
 | `<space> t t` | Toggle terminal |
 | `<space> w` | Guardar |
+| `H` / `L` | Editor anterior / siguiente |
 | `g t` / `g T` | Tab siguiente / anterior |
-| `] b` / `[ b` | Buffer siguiente / anterior (MRU) |
-| `<C-w> h/j/k/l` | Foco entre grupos |
-| `<C-w> H/J/K/L` | Mover editor entre grupos |
+| `<C-h/j/k/l>` | Foco entre grupos |
 
 ---
 

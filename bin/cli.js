@@ -60,11 +60,13 @@ if (!fs.existsSync(scriptPath)) {
 
 let proc;
 if (isWindows) {
+    // PowerShell usa -Force; normalizar -y/--yes para que no falle el binding de parámetros
+    const psArgs = restArgs.map(a => (a === '-y' || a === '--yes') ? '-Force' : a);
     proc = spawn('powershell.exe', [
         '-NoProfile',
         '-ExecutionPolicy', 'Bypass',
         '-File', scriptPath,
-        ...restArgs
+        ...psArgs
     ], { stdio: 'inherit', cwd: SCRIPT_DIR });
 } else {
     proc = spawn('bash', [scriptPath, ...restArgs], {

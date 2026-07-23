@@ -1,5 +1,6 @@
 param(
     [string]$Timestamp = "",
+    [Alias('y', 'yes')]
     [switch]$Force
 )
 

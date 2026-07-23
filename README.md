@@ -76,9 +76,8 @@ Al ejecutarlo, en orden:
 
 1. **Backup** de tu `settings.json`, `keybindings.json`, `snippets/` y lista de extensiones actuales en `.backups/<timestamp>/`.
 2. **Instala las extensiones** listadas en `extensions.txt` (4 en paralelo, con barra de progreso).
-3. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS).
-4. **Copia** la fuente Fira Code desde `fire code font/` y la registra en el sistema (P/Invoke + registro en Windows, `atsutil` en macOS, `fc-cache` en Linux).
-5. **Copia** `keybindings.json` y `snippets/` si existen en el repo.
+3. **Copia** la fuente Fira Code desde `fire code font/` y la registra en el sistema (P/Invoke + registro en Windows, `atsutil` en macOS, `fc-cache` en Linux).
+4. **Copia** `settings.json` a la carpeta de usuario de VS Code (`%APPDATA%\Code\User\` en Windows, `~/.config/Code/User/` en Linux, `~/Library/Application Support/Code/User/` en macOS), y también `keybindings.json` y `snippets/` si existen en el repo.
 
 > Si VS Code no está en PATH, el setup aborta con un mensaje accionable. Para sumarlo: `View > Command Palette > Shell Command: Install 'code' command in PATH`.
 
@@ -87,7 +86,7 @@ Al ejecutarlo, en orden:
 | Archivo | Descripción |
 |---|---|
 | `settings.json` | Config del editor, Vim, formateo, terminal, Git |
-| `extensions.txt` | Lista de extensiones a instalar (54) |
+| `extensions.txt` | Lista de extensiones a instalar (52) |
 | `fire code font/` | Fuente Fira Code (6 variantes) |
 | `package.json` | Config npm + entry point para `npx` |
 | `bin/cli.js` | Wrapper multiplataforma que detecta el SO y delega al script correspondiente |
@@ -100,17 +99,17 @@ Al ejecutarlo, en orden:
 
 | Setting | Qué hace |
 |---|---|
-| `editor.minimap.enabled: false` | Oculta el minimap para ganar espacio vertical |
+| `editor.fontLigatures: true` | Ligaduras de Fira Code (`=>`, `!=`, etc.) |
+| `editor.fontWeight: "500"` | Fira Code en peso medium |
 | `editor.linkedEditing: true` | Edición sincronizada de tags HTML/JSX |
-| `editor.semanticHighlighting.enabled: true` | Highlighting semántico del LSP |
 | `editor.bracketPairColorization` | Coloreado independiente por tipo de bracket |
 | `editor.stickyScroll.enabled: true` | Sticky scroll en la parte superior del editor |
-| `editor.fontWeight: "400"` | Fira Code en peso regular (mejor legibilidad) |
 | `editor.tabSize: 2` | Indentación de 2 espacios |
+| `editor.formatOnSave: true` | Formateo automático al guardar |
+| `editor.lineNumbers: "relative"` | Números de línea relativos (ideal con Vim) |
 | `files.autoSave: "afterDelay"` | Autosave con delay |
-| `typescript.preferences.importModuleSpecifier: "non-relative"` | Imports TS sin rutas relativas cuando es posible |
-
-> La config de Prettier vive en `.prettierrc` (no en `settings.json`) para que sea portable entre proyectos y clones del repo.
+| `js/ts.updateImportsOnFileMove.enabled: "always"` | Actualiza imports al mover/renombrar archivos |
+| `prettier.jsxSingleQuote: true` | Comillas simples en JSX |
 
 ## Atajos personalizados
 
@@ -164,14 +163,16 @@ Referencia completa en [`VIM.md`](./VIM.md).
 | `g c c` | Comentar línea (commentary) |
 | `g c` (visual) | Comentar selección (commentary) |
 
-#### Paneles y foco
+#### Paneles, foco y buffers
 
 | Tecla | Acción |
 |---|---|
-| `<C-w> h` | Ir al panel izquierdo |
-| `<C-w> l` | Ir al panel derecho |
-| `<C-w> k` | Ir al panel superior |
-| `<C-w> j` | Ir al panel inferior |
+| `<C-h>` | Ir al panel izquierdo |
+| `<C-l>` | Ir al panel derecho |
+| `<C-k>` | Ir al panel superior |
+| `<C-j>` | Ir al panel inferior |
+| `H` | Editor anterior del grupo |
+| `L` | Editor siguiente del grupo |
 | `s v` | Split vertical |
 | `<space> e` | Toggle explorer |
 | `<space> t t` | Toggle terminal |
@@ -202,6 +203,8 @@ Referencia completa en [`VIM.md`](./VIM.md).
 | `<C-v>` | Pegar |
 | `<C-f>` | Buscar en archivo |
 | `<C-z>` | Deshacer |
+| `<C-p>` | Quick Open nativo |
+| `<C-w>` | Cerrar editor (nativo de VS Code — cuidado, usá `<space> b d`) |
 
 ### Comportamiento Vim activo
 
