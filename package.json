@@ -1,6 +1,6 @@
 {
   "name": "@codexyzdev/vscode-config",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "VS Code config portable: settings, extensiones y atajos Vim, con backup automático y restore.",
   "bin": "./bin/cli.js",
   "files": [
@@ -19,7 +19,13 @@
     "type": "git",
     "url": "git+https://github.com/codexyzdev/vscode-config.git"
   },
-  "keywords": ["vscode", "vim", "config", "setup", "restore"],
+  "keywords": [
+    "vscode",
+    "vim",
+    "config",
+    "setup",
+    "restore"
+  ],
   "license": "MIT",
   "engines": {
     "node": ">=14"
