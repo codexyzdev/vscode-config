@@ -30,7 +30,6 @@
   "vim.sneak": true,
   "vim.camelCaseMotion.enable": true,
   "vim.surround": true,
-  "vim.cursorPositionMode": "keep",
 
   "vim.insertModeKeyBindings": [
     {
@@ -290,9 +289,22 @@
     "https://developer.microsoft.com/json-schemas/": true,
     "https://biomejs.dev": true
   },
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Ayu Light Bordered",
   "editor.inlineSuggest.edits.showCollapsed": true,
   "github.copilot.enable": {
-    "*": false
-  }
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false,
+    "html": false
+  },
+  "editor.linkedEditing": true,
+  "files.associations": {
+    "*.html": "html",
+    "*.css": "css"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.analysis.typeCheckingMode": "standard"
 }
